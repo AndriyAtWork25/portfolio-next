@@ -1,24 +1,24 @@
-// Wir importieren unsere Komponenten.
-// Import bedeutet: wir holen UI-Bausteine aus anderen Dateien rein,
-// damit wir sie hier benutzen können.
-
+// Import der einzelnen UI-Komponenten / Sections
 import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
+import SkillsSection from "@/components/sections/SkillsSection";
 
-// Das ist die Hauptseite "/" deiner Website.
+// Startseite deiner Website
 export default function Home() {
   return (
-    // <main> ist der Hauptinhalt der Seite.
     <main className="min-h-screen bg-black">
       {/* Obere Navigation */}
       <Navbar />
 
-      {/* Erste große Einstiegssektion */}
+      {/* Hero / Einstieg */}
       <HeroSection />
 
-      {/* Projekte-Sektion */}
+      {/* Projekte */}
       <ProjectsSection />
+
+      {/* Skills / Backend Expertise */}
+      <SkillsSection />
     </main>
   );
 }
