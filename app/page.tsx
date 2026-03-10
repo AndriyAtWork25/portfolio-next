@@ -1,5 +1,7 @@
-// Import aller Sections / Layout-Komponenten
+// Import aller Layout- und Section-Komponenten
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
 import HeroSection from "@/components/sections/HeroSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import SkillsSection from "@/components/sections/SkillsSection";
@@ -10,16 +12,16 @@ import ContactSection from "@/components/sections/ContactSection";
 export default function Home() {
   return (
     <main className="min-h-screen bg-black">
-      {/* Navigation */}
+      {/* Obere Navigation */}
       <Navbar />
 
-      {/* Einstieg / Hero */}
+      {/* Start / Hero */}
       <HeroSection />
 
       {/* Projekte */}
       <ProjectsSection />
 
-      {/* Fachliche Stärken */}
+      {/* Technische Kernkompetenzen */}
       <SkillsSection />
 
       {/* Über mich */}
@@ -27,6 +29,9 @@ export default function Home() {
 
       {/* Kontakt */}
       <ContactSection />
+
+      {/* Abschluss der Seite */}
+      <Footer />
     </main>
   );
 }
