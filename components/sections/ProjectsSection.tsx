@@ -54,7 +54,16 @@ export default function ProjectsSection() {
             return (
               <article
                 key={project.title}
-                className="soft-card overflow-hidden rounded-[2rem] p-6 md:p-8"
+                className="
+                soft-card
+                overflow-hidden
+                rounded-[2rem]
+                p-6
+                md:p-8
+                transition
+                duration-300
+                hover:shadow-[0_0_40px_rgba(212,160,23,0.15)]
+                "
               >
                 <div
                   className={`grid items-start gap-8 xl:grid-cols-2 ${
@@ -104,7 +113,19 @@ export default function ProjectsSection() {
                       {project.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full border border-yellow-400/20 bg-yellow-400/6 px-4 py-2 text-sm text-yellow-200"
+                          className="
+                          rounded-full
+                          border
+                          border-yellow-400/20
+                          bg-yellow-400/10
+                          px-4
+                          py-2
+                          text-sm
+                          text-yellow-200
+                          transition
+                          hover:bg-yellow-400/20
+                          hover:border-yellow-400/40
+                          "
                         >
                           {tech}
                         </span>
@@ -136,7 +157,7 @@ export default function ProjectsSection() {
                     {project.previewImages.map((image) => (
                       <div
                         key={image.src}
-                        className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/30"
+                        className="group overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/30"
                       >
                         {/* Label oberhalb des Bildinhalts */}
                         <div className="border-b border-white/8 px-4 py-3">
@@ -146,15 +167,24 @@ export default function ProjectsSection() {
                         </div>
 
                         {/* Bild / GIF */}
-                        <div className="p-4">
-                          <div className="overflow-hidden rounded-[1rem] border border-white/8 bg-black">
+                        <div className="p-4 relative">
+                          <div className="group overflow-hidden rounded-[1rem] border border-white/8 bg-black relative">
+                           <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100 bg-gradient-to-t from-yellow-500/10 to-transparent pointer-events-none"/>
                             <Image
                               src={image.src}
                               alt={image.alt}
                               width={1400}
                               height={900}
-                              className="h-auto w-full object-cover transition duration-500 hover:scale-[1.02]"
-                            />
+                              className="
+                              h-auto 
+                              w-full 
+                              object-cover
+                              transition
+                              duration-700
+                              ease-out
+                              group-hover:scale-105
+                              "
+                              />
                           </div>
                         </div>
                       </div>
