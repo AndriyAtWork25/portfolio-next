@@ -1,129 +1,169 @@
-const projects = [
-    {
-        title: "Task Manager",
-        description:
-           "Full-stack task management application with authentication, task CRUD operations and a clean user-focused workflow.",
-           techStack: ["Node.js", "Express", "MongoDB", "JWT", "Swagger"],
-           githubUrl: "https://github.com/AndriyAtWork25/TaskManagerAPI",
-    },
-    {
-        title: "Blog API",
-        description: 
-           "REST API with authentication, role-based access, email verification and structured backend architecture.",
-           techStack: ["Node.js", "Express", "MongoDB", "Swagger"],
-           githubUrl: "https://github.com/AndriyAtWork25/Detective-blog.git",
-    },
-    {
-        title: "Smart Automator",
-        description: 
-           "Backend-oriented automation platform focused on scalable workflows, modular architecture and practical business automation ideas.",
-           techStack: ["Node.js", "Express", "MongoDB", "Swagger"],
-              githubUrl: "https://github.com/AndriyAtWork25/smart-task-automator.git",
-    },
-];
+import Image from "next/image";
+import { projects } from "@/data/projects";
 
-// Das hier ist die Haupt-Komponente für die komplette Projects Section.
-// Diese Funktion gibt JSX zurück, also die UI, die im Browser gerendert wird.
+/*
+  Neue Projects Section:
+  - deutlich hochwertiger
+  - große Showcase Cards
+  - echte Screenshots + GIFs
+  - modernes Layout statt einfacher Mini-Karten
+*/
+
 export default function ProjectsSection() {
   return (
-    // <section> ist ein semantisches HTML-Element.
-    // Wir geben ihr eine id="projects", damit wir von der Navbar aus
-    // mit href="#projects" direkt hierher springen können.
-    <section id="projects" className="bg-black text-white">
-      
-      {/* 
-        Dieser Container sorgt dafür:
-        - maximale Breite (max-w-6xl)
-        - zentrierte Position (mx-auto)
-        - Innenabstand links/rechts (px-6)
-        - oben/unten Abstand (py-20)
-      */}
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        
-        {/* Kleine obere Section-Beschriftung */}
-        <p className="mb-3 text-sm uppercase tracking-[0.2em] text-yellow-400">
-          Featured Projects
-        </p>
+    <section id="projects" className="relative bg-black text-white">
+      {/* Hintergrund-Layer für mehr Tiefe */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="tech-grid absolute inset-0 opacity-25" />
+        <div className="absolute left-[8%] top-20 h-56 w-56 rounded-full bg-yellow-500/6 blur-3xl" />
+      </div>
 
-        {/* Hauptüberschrift der Section */}
-        <h2 className="max-w-3xl text-3xl font-bold md:text-4xl">
-          Backend-focused projects that show how I build APIs, architecture and real application logic.
+      <div className="container-shell section-space relative">
+        
+        {/* Kleine obere Beschriftung */}
+        <div className="mb-4 flex items-center gap-3">
+          <div className="h-3 w-3 rounded-full bg-yellow-400 shadow-[0_0_20px_rgba(212,160,23,0.5)]" />
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">
+            Projects
+          </p>
+        </div>
+
+        {/* Große Überschrift */}
+        <h2 className="max-w-4xl text-3xl font-bold leading-tight md:text-5xl">
+          Real backend projects with documented APIs, product workflows and visual proof of implementation.
         </h2>
 
-        {/* Unterstützender Erklärungstext unter der Überschrift */}
-        <p className="mt-6 max-w-3xl text-gray-300 leading-7">
-          These projects reflect my focus on backend engineering, practical problem solving,
-          authentication, database design, API development and scalable thinking.
+        {/* Beschreibung */}
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-300">
+          These projects are designed to show not only backend logic, but also
+          the practical product side of development: authentication flows,
+          automation dashboards, documentation, CRUD systems and user-facing integration.
         </p>
 
-        {/* 
-          Grid = Rasterlayout
-          - auf kleinen Geräten: 1 Spalte
-          - ab md (mittelgroß): 2 Spalten
-          - ab xl (größer): 3 Spalten
-          gap-6 = Abstand zwischen den Karten
-        */}
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {/* Abstand nach oben vor den Cards */}
+        <div className="mt-14 space-y-10">
           
           {/* 
-            .map() geht durch jedes Projekt im Array
-            und erstellt für jedes Projekt eine Card.
-            
-            project = aktuelles Element aus dem Array
-            index = Position im Array (0, 1, 2 ...)
+            Wir rendern jede große Project Card dynamisch.
+            index nutzen wir hier für Layout-Variation:
+            bei jeder zweiten Card drehen wir das Innenlayout.
           */}
-          {projects.map((project, index) => (
-            
-            // article ist semantisch passend für eigenständigen Inhalt
-            <article
-              key={index}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-yellow-400/40 hover:bg-white/10"
-            >
-              {/* Projekttitel */}
-              <h3 className="text-2xl font-semibold text-white">
-                {project.title}
-              </h3>
+          {projects.map((project, index) => {
+            const isReversed = index % 2 === 1;
 
-              {/* Projektbeschreibung */}
-              <p className="mt-4 text-sm leading-7 text-gray-300">
-                {project.description}
-              </p>
-
-              {/* 
-                Bereich für Tech Stack Badges
-                flex-wrap sorgt dafür, dass die kleinen Tags umbrechen,
-                wenn horizontal kein Platz mehr ist.
-              */}
-              <div className="mt-6 flex flex-wrap gap-2">
-                
-                {/* 
-                  Noch ein .map():
-                  Wir gehen jetzt durch das techStack-Array jedes Projekts.
-                  Für jeden Begriff bauen wir ein kleines Badge.
-                */}
-                {project.techStack.map((tech, techIndex) => (
-                  <span
-                    key={techIndex}
-                    className="rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1 text-xs font-medium text-yellow-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Bereich für den GitHub-Link */}
-              <div className="mt-8">
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-lg border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:border-white hover:bg-white hover:text-black"
+            return (
+              <article
+                key={project.title}
+                className="soft-card overflow-hidden rounded-[2rem] p-6 md:p-8"
+              >
+                <div
+                  className={`grid items-start gap-8 xl:grid-cols-2 ${
+                    isReversed ? "xl:[&>*:first-child]:order-2 xl:[&>*:last-child]:order-1" : ""
+                  }`}
                 >
-                  View Project
-                </a>
-              </div>
-            </article>
-          ))}
+                  
+                  {/* ================= TEXT SIDE ================= */}
+                  <div>
+                    {/* Kleine Kategorie-Zeile */}
+                    <p className="text-sm leading-7 text-gray-400">
+                      {project.eyebrow}
+                    </p>
+
+                    {/* Titel */}
+                    <h3 className="mt-4 text-3xl font-bold text-white md:text-4xl">
+                      {project.title}
+                    </h3>
+
+                    {/* Beschreibung */}
+                    <p className="mt-6 max-w-2xl text-base leading-8 text-gray-300">
+                      {project.description}
+                    </p>
+
+                    {/* Highlights */}
+                    <div className="mt-8">
+                      <p className="text-sm uppercase tracking-[0.16em] text-yellow-400">
+                        Key Highlights
+                      </p>
+
+                      <ul className="mt-4 space-y-3">
+                        {project.highlights.map((highlight) => (
+                          <li
+                            key={highlight}
+                            className="flex items-start gap-3 text-gray-200"
+                          >
+                            {/* Goldener Punkt */}
+                            <span className="mt-2 h-2 w-2 rounded-full bg-yellow-400" />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Tech badges */}
+                    <div className="mt-8 flex flex-wrap gap-3">
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-yellow-400/20 bg-yellow-400/6 px-4 py-2 text-sm text-yellow-200"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Buttons */}
+                    <div className="mt-10 flex flex-wrap gap-4">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="gold-glow rounded-2xl border border-yellow-400/30 bg-gradient-to-br from-yellow-400 to-yellow-600 px-6 py-3 font-semibold text-black transition duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(212,160,23,0.35)]"
+                      >
+                        View GitHub
+                      </a>
+
+                      <a
+                        href="#contact"
+                        className="rounded-2xl border border-white/10 bg-white/4 px-6 py-3 font-medium text-white transition duration-300 hover:border-yellow-400/30 hover:bg-white/8 hover:text-yellow-300"
+                      >
+                        Ask About Project
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* ================= VISUAL SIDE ================= */}
+                  <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-1">
+                    {project.previewImages.map((image) => (
+                      <div
+                        key={image.src}
+                        className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/30"
+                      >
+                        {/* Label oberhalb des Bildinhalts */}
+                        <div className="border-b border-white/8 px-4 py-3">
+                          <p className="text-sm font-semibold text-yellow-400">
+                            {image.label}
+                          </p>
+                        </div>
+
+                        {/* Bild / GIF */}
+                        <div className="p-4">
+                          <div className="overflow-hidden rounded-[1rem] border border-white/8 bg-black">
+                            <Image
+                              src={image.src}
+                              alt={image.alt}
+                              width={1400}
+                              height={900}
+                              className="h-auto w-full object-cover transition duration-500 hover:scale-[1.02]"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
